@@ -3,8 +3,6 @@
 import time
 import sys 
 
-print("Welcome to the Calculator Program!")
-
 # Ask To Contiue Functions
 def ask_to_continue():
     user_input1 = input("Would you like to (Quit) or (Continue)?: ").lower().strip()
@@ -17,13 +15,18 @@ def ask_to_continue():
         return True
     else:
         print("Invalid Number")
-        return True 
+        return True
+
+
+
+
+print("Welcome to the Calculator Program!")
 
 while True: 
     # Collecting User Input and Validating the Operator
     operator = input("Enter the Operator you would like to use + - * / **: ")
     if operator not in ['+', '-', '*', '/', '**']:
-        print("Invalid operator. Please enter one of the following: +, -, *, /, **.")
+        print("Invalid operator.")
         continue
 
 
@@ -33,9 +36,9 @@ while True:
 
         num2 = float(input("Enter the second number: "))
         time.sleep(0.3)
-    except ValueError:
+    except Exception as error:
         time.sleep(1)
-        print("Invalid input. Please enter a valid number.")
+        print(f"You have error {error}, Please Try Again")
         continue
 
     # Calculating the Result
@@ -43,35 +46,27 @@ while True:
     # Addition
     if operator == "+":
         result = num1 + num2
-        print(f"Your answer is: {result}")
-        ask_to_continue()
     
     # Subtracting
     elif operator == "-":
         result = num1 - num2
-        print(f"Your answer is: {result}")
-        ask_to_continue()
     
     # Multiplying
     elif operator == "*":
         result = num1 * num2
-        print(f"Your answer is: {result}")
-        ask_to_continue()
     
     # Division
     elif operator == "/":
         if num2 == 0:
             print("Error: Division by zero is not allowed.")
+            continue
         else:
             result = num1 / num2
-            print(f"Your answer is: {result}")
-
-        ask_to_continue()
 
     # Exponetial
     elif operator == "**":
         result = num1 ** num2
-        print(f"Your answer is: {result}")
-        ask_to_continue()
 
+    print(f"Your answer is: {result}")
+    ask_to_continue()
 # Code Ends
