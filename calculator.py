@@ -1,9 +1,11 @@
 # Calculator Program 
 
-import time
-import sys 
+# Imports
+import time, sys
 
-# Ask To Contiue Functions
+# Functions
+
+# Ask To Contiue Function
 def ask_to_continue():
     user_input1 = input("Would you like to (Quit) or (Continue)?: ").lower().strip()
     if user_input1 == "quit":
@@ -17,10 +19,10 @@ def ask_to_continue():
         print("Invalid Number")
         return True
 
-
-
-
+# Greeting
 print("Welcome to the Calculator Program!")
+
+# Main Loop
 
 while True: 
     # Collecting User Input and Validating the Operator
@@ -36,12 +38,16 @@ while True:
 
         num2 = float(input("Enter the second number: "))
         time.sleep(0.3)
-    except Exception as error:
+    except TypeError as e1:
         time.sleep(1)
-        print(f"You have error {error}, Please Try Again")
+        print(f"You have error {e1}, Please Try Again")
+        continue
+    except ValueError as e2:
+        time.sleep(1)
+        print(f"You have error {e2}, Please Try Again")
         continue
 
-    # Calculating the Result
+# Calculating the Result
 
     # Addition
     if operator == "+":
@@ -66,6 +72,13 @@ while True:
     # Exponetial
     elif operator == "**":
         result = num1 ** num2
+    
+    # Invalid Operator
+    elif operator not in ['+', '-', '*', '/', '**']:
+        print("Invalid operator.")
+        print("Please Try Again")
+        continue
+
 
     print(f"Your answer is: {result}")
     ask_to_continue()
